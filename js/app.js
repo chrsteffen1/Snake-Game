@@ -12,7 +12,7 @@ const scoreEl = document.querySelector('#score')
 const highScoreEl = document.querySelector('#high-score')
 const startBtn = document.querySelector('button')
 
-console.log(snakeEl)
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -25,7 +25,7 @@ function init() {
   snake = [0,0]
   score = 0
   apple = 0
-  getBoard()
+  board = getBoard()
   render()
 }
 
@@ -33,5 +33,8 @@ function render() {
 
 }
 function getBoard () {
-
+  for (let i =0; i < 100; i ++){
+    let pixel = document.createElement('div')
+    boardEl.appendChild(pixel)
+  }
 }
