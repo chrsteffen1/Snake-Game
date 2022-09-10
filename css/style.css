@@ -9,3 +9,11 @@ margin: 10px;
 #board > div {
   border: 1px solid black;
 }
+
+.apple {
+  background-color: red;
+}
+
+.snake{
+  background-color: green;
+}
