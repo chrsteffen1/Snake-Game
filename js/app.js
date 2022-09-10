@@ -24,11 +24,7 @@ keyBoard.addEventListener('keydown', keyPress)
 init()
 
 function init() {
-  snake = 0
   score = 0
-  apple = 0
-  xSpeed = 0
-  ySpeed = 0
   getBoard()
   createSnake()
   createApple()
@@ -49,7 +45,16 @@ function createSnake() {
   boardEl.children[0].classList.add('snake')
 }
 function keyPress(evt) {
-  
+    // let code = evt.code
+  if (evt.code === 'ArrowDown'){
+    console.log('move down')
+  } else if (evt.code === 'ArrowRight'){
+    console.log('move right')
+  } else if (evt.code === 'ArrowUp'){
+    console.log('move up')
+  } else if (evt.code === 'ArrowLeft'){
+    console.log('left')
+  }
 }
 function createApple() {
   boardEl.children[Math.floor(Math.random() * 100)].classList.add('apple')
