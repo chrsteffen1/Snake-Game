@@ -52,6 +52,6 @@ function keyPress(evt) {
   
 }
 function createApple() {
-
+  boardEl.children[Math.floor(Math.random() * 100)].classList.add('apple')
 }
 
