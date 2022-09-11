@@ -25,6 +25,7 @@ init()
 
 function init() {
   score = 0
+  snake = 0
   getBoard()
   createSnake()
   createApple()
@@ -42,19 +43,23 @@ function getBoard () {
   }
 }
 function createSnake() {
-  boardEl.children[0].classList.add('snake')
+  boardEl.children[snake].classList.add('snake')
 }
-function keyPress(evt) {
-    // let code = evt.code
+function keyPress(evt) { 
   if (evt.code === 'ArrowDown'){
-    console.log('move down')
+    boardEl.children[snake].classList.remove('snake')
+    snake += 10
   } else if (evt.code === 'ArrowRight'){
-    console.log('move right')
+    boardEl.children[snake].classList.remove('snake')
+    snake += 1
   } else if (evt.code === 'ArrowUp'){
-    console.log('move up')
+    boardEl.children[snake].classList.remove('snake')
+    snake -= 10
   } else if (evt.code === 'ArrowLeft'){
-    console.log('left')
+    boardEl.children[snake].classList.remove('snake')
+    snake -= 1
   }
+  createSnake()
 }
 function createApple() {
   boardEl.children[Math.floor(Math.random() * 100)].classList.add('apple')
