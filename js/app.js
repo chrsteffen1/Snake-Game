@@ -36,12 +36,13 @@ function init() {
   getBoard()
   createSnake()
   createApple()
-  render()
   // setInterval(updateSnake, 1000 );
 }
 
-function render() {
-
+function removeTail() {
+  snakeTail.forEach(function(spot){
+    boardEl.children[spot].classList.remove('snake')
+  })
 }
 function getBoard () {
   for (let i =0; i < 100; i ++){
@@ -79,16 +80,16 @@ function keyPress(evt) {
     }
   } else if (evt.code === 'ArrowLeft'){
     snake -= 1
-    snakeHead.unshift((snake)) 
+    snakeHead.unshift(snake) 
     snakeHead.pop()
     if (((snake + 1)% 10) === 0){
       gameOver()
     }
   }
+  removeTail()
   updateSnake()
 }
 function createApple() {
-  // boardEl.children[apple].classList.add('apple')
   if(snake === apple){
     apple = Math.floor(Math.random() * 100)
   }
@@ -96,20 +97,19 @@ function createApple() {
 }
 
 function updateSnake(position) {
+  snakeTail = snakeHead.slice(-1)
   if (snake === apple){
     boardEl.children[snake].classList.remove('apple')
+    snakeHead.push(snake)
     snakeTail.push(snake)
     createApple()
+    render()
   }
     snakeHead.forEach(function(spot){
       boardEl.children[spot].classList.add('snake')
       console.log(snakeHead)
       console.log(snakeTail)
     })
-    snakeTail.forEach(function(spot){
-      boardEl.children[spot].classList.add('snake')
-    })
-  // render()
 }
 function gameOver() {
   boardEl.style.visibility = 'hidden'
