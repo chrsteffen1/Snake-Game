@@ -50,22 +50,22 @@ function keyPress(evt) {
   if (evt.code === 'ArrowDown'){
     snake += 10
     if (snake >= 100){
-      snake = 0
+      gameOver()
     }
   } else if (evt.code === 'ArrowRight'){
     snake += 1
     if ((snake % 10) === 0){
-      snake = 0
+      gameOver()
     }
   } else if (evt.code === 'ArrowUp'){
     snake -= 10
     if (snake < 0){
-      snake = 0
+      gameOver()
     }
   } else if (evt.code === 'ArrowLeft'){
     snake -= 1
     if (((snake + 1)% 10) === 0){
-      snake = 0
+      gameOver()
     }
   }
   updateSnake()
@@ -75,5 +75,9 @@ function createApple() {
 }
 
 function updateSnake() {
-  boardEl.children[snake].classList.add('snake')
+  if(boardEl.style.visibility !== 'hidden')
+    boardEl.children[snake].classList.add('snake')
+}
+function gameOver() {
+  boardEl.style.visibility = 'hidden'
 }
