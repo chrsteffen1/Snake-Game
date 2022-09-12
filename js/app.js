@@ -46,22 +46,34 @@ function createSnake() {
   boardEl.children[snake].classList.add('snake')
 }
 function keyPress(evt) { 
+  boardEl.children[snake].classList.remove('snake')
   if (evt.code === 'ArrowDown'){
-    boardEl.children[snake].classList.remove('snake')
     snake += 10
+    if (snake >= 100){
+      snake = 0
+    }
   } else if (evt.code === 'ArrowRight'){
-    boardEl.children[snake].classList.remove('snake')
     snake += 1
+    if ((snake % 10) === 0){
+      snake = 0
+    }
   } else if (evt.code === 'ArrowUp'){
-    boardEl.children[snake].classList.remove('snake')
     snake -= 10
+    if (snake < 0){
+      snake = 0
+    }
   } else if (evt.code === 'ArrowLeft'){
-    boardEl.children[snake].classList.remove('snake')
     snake -= 1
+    if (((snake + 1)% 10) === 0){
+      snake = 0
+    }
   }
-  createSnake()
+  updateSnake()
 }
 function createApple() {
   boardEl.children[Math.floor(Math.random() * 100)].classList.add('apple')
 }
 
+function updateSnake() {
+  boardEl.children[snake].classList.add('snake')
+}
