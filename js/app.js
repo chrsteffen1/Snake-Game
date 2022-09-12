@@ -29,6 +29,7 @@ function init() {
   score = 0
   snake = 0
   apple = 0
+  scoreEl.textContent = (`Score:${score}`)
   snakeHead = [snake]
   snakeTail =[]
   boardEl.innerHTML = ''
