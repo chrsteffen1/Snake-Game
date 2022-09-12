@@ -25,3 +25,7 @@ margin: 10px;
 .snake{
   background-color: green;
 }
+
+#high-score{
+  padding-left: 230px;
+}
