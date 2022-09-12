@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail
+let board, snake, apple, direction, score, snakeHead, snakeTail, highScore
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -29,7 +29,9 @@ function init() {
   score = 0
   snake = 0
   apple = 0
+  highScore = 0
   scoreEl.textContent = (`Score:${score}`)
+  highScoreEl.textContent = (`HighScore:${highScore}`)
   snakeHead = [snake]
   snakeTail =[]
   boardEl.innerHTML = ''
