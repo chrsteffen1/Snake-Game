@@ -30,7 +30,7 @@ function init() {
   snake = 0
   apple = 0
   snakeHead = [snake]
-  console.log(snake);
+  snakeTail =[]
   boardEl.innerHTML = ''
   boardEl.style.visibility = 'visible'
   getBoard()
@@ -57,22 +57,30 @@ function createSnake() {
 function keyPress(evt) { 
   boardEl.children[snake].classList.remove('snake')
   if (evt.code === 'ArrowDown'){
-    snake += 10
+    snake +=10
+    snakeHead.unshift((snake)) 
+    snakeHead.pop()
     if (snake >= 100){
       gameOver()
     }
   } else if (evt.code === 'ArrowRight'){
     snake += 1
+    snakeHead.unshift((snake)) 
+    snakeHead.pop()
     if ((snake % 10) === 0){
       gameOver()
     }
   } else if (evt.code === 'ArrowUp'){
     snake -= 10
+    snakeHead.unshift((snake)) 
+    snakeHead.pop()
     if (snake < 0){
       gameOver()
     }
   } else if (evt.code === 'ArrowLeft'){
     snake -= 1
+    snakeHead.unshift((snake)) 
+    snakeHead.pop()
     if (((snake + 1)% 10) === 0){
       gameOver()
     }
@@ -80,27 +88,28 @@ function keyPress(evt) {
   updateSnake()
 }
 function createApple() {
-  while (snake === apple){
+  // boardEl.children[apple].classList.add('apple')
+  if(snake === apple){
     apple = Math.floor(Math.random() * 100)
   }
   boardEl.children[apple].classList.add('apple')
 }
 
 function updateSnake(position) {
-  // snakeTail = snakeHead.shift()
-  // snakeHead = snakeHead.unshift(snake)
-  // console.log(snakeHead);
-  // console.log(snakeTail)
-  if(snake === apple){
-    boardEl.children[apple].classList.remove('apple')
+  if (snake === apple){
+    boardEl.children[snake].classList.remove('apple')
+    snakeTail.push(snake)
     createApple()
   }
-  if(boardEl.style.visibility !== 'hidden'){
-    boardEl.children[snake].classList.add('snake')
-    console.log(snake)
-    console.log(apple);
-  }
-  render()
+    snakeHead.forEach(function(spot){
+      boardEl.children[spot].classList.add('snake')
+      console.log(snakeHead)
+      console.log(snakeTail)
+    })
+    snakeTail.forEach(function(spot){
+      boardEl.children[spot].classList.add('snake')
+    })
+  // render()
 }
 function gameOver() {
   boardEl.style.visibility = 'hidden'
