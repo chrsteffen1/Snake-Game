@@ -39,11 +39,6 @@ function init() {
   // setInterval(updateSnake, 1000 );
 }
 
-function removeTail() {
-  snakeTail.forEach(function(spot){
-    boardEl.children[spot].classList.remove('snake')
-  })
-}
 function getBoard () {
   for (let i =0; i < 100; i ++){
     let pixel = document.createElement('div')
@@ -90,7 +85,7 @@ function keyPress(evt) {
   updateSnake()
 }
 function createApple() {
-  if(snake === apple){
+  while(snakeHead.includes(apple)){
     apple = Math.floor(Math.random() * 100)
   }
   boardEl.children[apple].classList.add('apple')
@@ -103,13 +98,15 @@ function updateSnake(position) {
     snakeHead.push(snake)
     snakeTail.push(snake)
     createApple()
-    removeTail()
   }
-    snakeHead.forEach(function(spot){
-      boardEl.children[spot].classList.add('snake')
-      console.log(snakeHead)
-      console.log(snakeTail)
-    })
+  snakeHead.forEach(function(spot){
+    boardEl.children[spot].classList.add('snake')
+  })
+}
+function removeTail() {
+  snakeTail.forEach(function(spot){
+    boardEl.children[spot].classList.remove('snake')
+  })
 }
 function gameOver() {
   boardEl.style.visibility = 'hidden'
