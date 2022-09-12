@@ -29,6 +29,7 @@ function init() {
   score = 0
   snake = 0
   boardEl.innerHTML = ''
+  boardEl.style.visibility = 'visible'
   getBoard()
   createSnake()
   createApple()
@@ -46,15 +47,13 @@ function getBoard () {
     boardEl.appendChild(pixel)
   }
 }
+
 function createSnake() {
-  boardEl.children[snake].classList.add('snake')
+  boardEl.children[0].classList.add('snake')
 }
 function keyPress(evt) { 
   boardEl.children[snake].classList.remove('snake')
   if (evt.code === 'ArrowDown'){
-    // snake.forEach(function(spot) {
-    //   spot += 10
-    // }) 
     snake += 10
     if (snake >= 100){
       gameOver()
@@ -82,8 +81,10 @@ function createApple() {
 }
 
 function updateSnake(position) {
-  if(boardEl.style.visibility !== 'hidden')
+  if(boardEl.style.visibility !== 'hidden'){
     boardEl.children[snake].classList.add('snake')
+  }
+  render()
 }
 function gameOver() {
   boardEl.style.visibility = 'hidden'
