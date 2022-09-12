@@ -28,6 +28,7 @@ init()
 function init() {
   score = 0
   snake = 0
+  boardEl.innerHTML = ''
   getBoard()
   createSnake()
   createApple()
