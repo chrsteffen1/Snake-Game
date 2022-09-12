@@ -12,6 +12,7 @@ const scoreEl = document.querySelector('#score')
 const highScoreEl = document.querySelector('#high-score')
 const startBtn = document.querySelector('button')
 const keyBoard = document.querySelector('body')
+const resetBtn = document.querySelector('#reset')
 
 
 
@@ -19,6 +20,7 @@ const keyBoard = document.querySelector('body')
 /*----------------------------- Event Listeners -----------------------------*/
 
 keyBoard.addEventListener('keydown', keyPress)
+resetBtn.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -30,6 +32,7 @@ function init() {
   createSnake()
   createApple()
   render()
+  // setInterval(updateSnake, 1000 );
 }
 
 function render() {
@@ -48,6 +51,9 @@ function createSnake() {
 function keyPress(evt) { 
   boardEl.children[snake].classList.remove('snake')
   if (evt.code === 'ArrowDown'){
+    // snake.forEach(function(spot) {
+    //   spot += 10
+    // }) 
     snake += 10
     if (snake >= 100){
       gameOver()
@@ -74,7 +80,7 @@ function createApple() {
   boardEl.children[Math.floor(Math.random() * 100)].classList.add('apple')
 }
 
-function updateSnake() {
+function updateSnake(position) {
   if(boardEl.style.visibility !== 'hidden')
     boardEl.children[snake].classList.add('snake')
 }
