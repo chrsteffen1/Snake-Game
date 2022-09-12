@@ -103,7 +103,7 @@ function updateSnake(position) {
     snakeHead.push(snake)
     snakeTail.push(snake)
     createApple()
-    render()
+    removeTail()
   }
     snakeHead.forEach(function(spot){
       boardEl.children[spot].classList.add('snake')
