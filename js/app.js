@@ -28,6 +28,7 @@ init()
 function init() {
   score = 0
   snake = 0
+  apple = 0
   snakeHead = [snake]
   console.log(snake);
   boardEl.innerHTML = ''
@@ -79,7 +80,9 @@ function keyPress(evt) {
   updateSnake()
 }
 function createApple() {
-  apple = Math.floor(Math.random() * 100)
+  while (snake === apple){
+    apple = Math.floor(Math.random() * 100)
+  }
   boardEl.children[apple].classList.add('apple')
 }
 
