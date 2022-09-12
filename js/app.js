@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score
+let board, snake, apple, direction, score, snakeHead, snakeTail
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -28,6 +28,8 @@ init()
 function init() {
   score = 0
   snake = 0
+  snakeHead = [snake]
+  console.log(snake);
   boardEl.innerHTML = ''
   boardEl.style.visibility = 'visible'
   getBoard()
@@ -77,12 +79,23 @@ function keyPress(evt) {
   updateSnake()
 }
 function createApple() {
-  boardEl.children[Math.floor(Math.random() * 100)].classList.add('apple')
+  apple = Math.floor(Math.random() * 100)
+  boardEl.children[apple].classList.add('apple')
 }
 
 function updateSnake(position) {
+  // snakeTail = snakeHead.shift()
+  // snakeHead = snakeHead.unshift(snake)
+  // console.log(snakeHead);
+  // console.log(snakeTail)
+  if(snake === apple){
+    boardEl.children[apple].classList.remove('apple')
+    createApple()
+  }
   if(boardEl.style.visibility !== 'hidden'){
     boardEl.children[snake].classList.add('snake')
+    console.log(snake)
+    console.log(apple);
   }
   render()
 }
