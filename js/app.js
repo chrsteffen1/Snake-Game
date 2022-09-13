@@ -174,8 +174,12 @@ function move(){
 
 function hitSnake() {
   badSnake = snakeHead.slice(1, -1)
-  if(badSnake.includes(snake) && badSnake.length > 2){
-    gameOver()
+  if(badSnake.length > 1){
+    badSnake.forEach((spot) => {
+      if(spot === snake) {
+        gameOver()
+      }
+    })
   }
 }
 

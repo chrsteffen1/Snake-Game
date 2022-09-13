@@ -1,8 +1,7 @@
+
 .container {
-  max-width: 90vmin;
-  max-height: 90vmin;
   width: 100%;
-  border: 5px solid #666666;
+  border: 10px solid red;
   margin: auto;
   overflow: hidden;
 }
@@ -16,6 +15,7 @@ margin: 10px;
 
 #board > div {
   border: 1px solid black;
+
 }
 
 .apple {
