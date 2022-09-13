@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId
+let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -67,6 +67,7 @@ function updateSnake() {
     snakeHead.push(snake)
     snakeTail.push(snake)
     createApple()
+
   }
   snakeHead.forEach(function(spot){
     boardEl.children[spot].classList.add('snake')
@@ -79,6 +80,7 @@ function removeTail() {
 }
 function gameOver() {
   boardEl.style.visibility = 'hidden'
+  snakeHead =[]
   clearInterval(intervalId)
   // imgEl.setAttribute("hidden", false)
 }
@@ -93,7 +95,7 @@ function keyPress(evt) {
     direction = 'left'
   }
   move(direction)
-  return direction
+  hitSnake()
 }
 
 
@@ -131,9 +133,18 @@ function move(){
         if (((snake + 1)% 10) === 0){
         gameOver()
         }
-      }
+      } 
   removeTail()
   updateSnake()  
   }
 
+  function hitSnake() {
+    badSnake = snakeHead.slice(1, -1)
+    console.log(badSnake)
+    console.log(snake)
+    console.log(snakeHead)
+    if(badSnake.includes(snake) && badSnake.length > 2){
+      gameOver()
+    }
+  }
 
