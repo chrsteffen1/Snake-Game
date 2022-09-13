@@ -31,8 +31,8 @@ function init() {
   snake = 0
   apple = 0
   direction = 'right'
+  highScore = 0
   scoreEl.textContent = (`Score:${score}`)
-  highScoreEl.textContent = (`HighScore:${highScore}`)
   snakeHead = [snake]
   snakeTail =[]
   gameStart = false
@@ -88,6 +88,10 @@ function gameOver() {
   snakeHead =[]
   gameStart = false
   clearInterval(intervalId)
+  if (score > highScore) {
+    highScore = score
+  }
+  highScoreEl.textContent = (`HighScore:${highScore}`)
   // imgEl.setAttribute("hidden", false)
 }
 
