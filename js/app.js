@@ -19,7 +19,7 @@ const resetBtn = document.querySelector('#reset')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-keyBoard.addEventListener('keyup', keyPress)
+keyBoard.addEventListener('keydown', keyPress)
 resetBtn.addEventListener('click', init)
 startBtn.addEventListener('click', startGame)
 
@@ -30,18 +30,18 @@ function init() {
   score = 0
   snake = 0
   apple = 0
-  highScore = 0
   direction = 'right'
   scoreEl.textContent = (`Score:${score}`)
   highScoreEl.textContent = (`HighScore:${highScore}`)
   snakeHead = [snake]
   snakeTail =[]
+  gameStart = false
   boardEl.innerHTML = ''
   boardEl.style.visibility = 'visible'
-  gameStart = false
   getBoard()
   createSnake()
   createApple()
+  clearInterval(intervalId)
 }
 function getBoard () {
   for (let i =0; i < 100; i ++){
@@ -87,14 +87,33 @@ function gameOver() {
   // imgEl.setAttribute("hidden", false)
 }
 function keyPress(evt) { 
+  if (gameStart === false){
+    return
+  }
   if (evt.code === 'ArrowDown'){
-    direction = 'down'
+    if(direction === 'down'){
+      return
+    } else {
+      direction = 'down'
+    }
   } else if (evt.code === 'ArrowRight'){
-    direction = 'right'
+    if(direction === 'right'){
+      return
+    } else {
+      direction = 'right'
+    }
   } else if (evt.code === 'ArrowUp'){
-    direction = 'up'
+    if(direction === 'up'){
+      return
+    } else {
+      direction = 'up'
+    }
   } else if (evt.code === 'ArrowLeft'){
-    direction = 'left'
+    if(direction === 'left'){
+      return
+    } else {
+      direction = 'left'
+    }
   }
   move(direction)
   hitSnake()
@@ -103,10 +122,8 @@ function keyPress(evt) {
 
 
 function startGame(){
-  gameStart = true
-  if (gameStart === true){
+    gameStart = true
     intervalId = setInterval(move, 1000, direction)
-  }
 }
 function move(){
   boardEl.children[snake].classList.remove('snake')
