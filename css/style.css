@@ -25,19 +25,16 @@ margin: 10px 0;
 width: fit-content;
 justify-self: center;
 align-self: center;
+border: 1px solid black;
 }
 
-#board > div {
-  border: 1px solid black;
-
-}
 
 .apple {
   background-color: red;
 }
 
 .snake{
-  background-color: green;
+  background-color: #2F4858;
 }
 
 #high-score{
