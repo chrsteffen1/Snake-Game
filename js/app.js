@@ -30,7 +30,7 @@ function init() {
   snake = 0
   apple = 0
   highScore = 0
-  direction = 39
+  direction = 'right'
   scoreEl.textContent = (`Score:${score}`)
   highScoreEl.textContent = (`HighScore:${highScore}`)
   snakeHead = [snake]
@@ -79,17 +79,18 @@ function removeTail() {
 }
 function gameOver() {
   boardEl.style.visibility = 'hidden'
+  clearInterval(intervalId)
   // imgEl.setAttribute("hidden", false)
 }
 function keyPress(evt) { 
   if (evt.code === 'ArrowDown'){
-    direction = 40
+    direction = 'down'
   } else if (evt.code === 'ArrowRight'){
-    direction = 39
+    direction = 'right'
   } else if (evt.code === 'ArrowUp'){
-    direction = 38
+    direction = 'up'
   } else if (evt.code === 'ArrowLeft'){
-    direction = 37
+    direction = 'left'
   }
   move(direction)
   return direction
@@ -102,28 +103,28 @@ function startGame(){
 }
 function move(){
   boardEl.children[snake].classList.remove('snake')
-    if(direction === 40){
+    if(direction === 'down'){
       snake +=10
       snakeHead.unshift((snake))
       snakeHead.pop()
       if (snake >= 100){
         gameOver()
       }
-    } else if (direction === 39){
+    } else if (direction === 'right'){
         snake += 1
         snakeHead.unshift((snake)) 
         snakeHead.pop()
         if ((snake % 10) === 0){
         gameOver()
         }
-      }else if (direction === 38){
+      }else if (direction === 'up'){
         snake -= 10
         snakeHead.unshift((snake)) 
         snakeHead.pop()
         if (snake < 0){
         gameOver()
         }
-      } else if( direction === 37){
+      } else if( direction === 'left'){
         snake -= 1
         snakeHead.unshift(snake) 
         snakeHead.pop()
@@ -134,4 +135,5 @@ function move(){
   removeTail()
   updateSnake()  
   }
+
 
