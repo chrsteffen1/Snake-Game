@@ -126,7 +126,6 @@ function keyPress(evt) {
       direction = 'left'
     }
   }
-  move(direction)
 }
 
 
@@ -170,8 +169,8 @@ function move(){
         }
       } 
   removeTail()
-  hitSnake()
   updateSnake()  
+  hitSnake()
   scoreEl.textContent = (`Score:${score}`)
 }
 
