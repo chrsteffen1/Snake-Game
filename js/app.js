@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart
+let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart, speed
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -91,25 +91,25 @@ function keyPress(evt) {
     return
   }
   if (evt.code === 'ArrowDown'){
-    if(direction === 'down'){
+    if(direction === 'up' || direction === 'down'){
       return
     } else {
       direction = 'down'
     }
   } else if (evt.code === 'ArrowRight'){
-    if(direction === 'right'){
+    if(direction === 'right' || direction === 'left'){
       return
     } else {
       direction = 'right'
     }
   } else if (evt.code === 'ArrowUp'){
-    if(direction === 'up'){
+    if(direction === 'up' || direction === 'down'){
       return
     } else {
       direction = 'up'
     }
   } else if (evt.code === 'ArrowLeft'){
-    if(direction === 'left'){
+    if(direction === 'right' || direction === 'left'){
       return
     } else {
       direction = 'left'
@@ -123,7 +123,8 @@ function keyPress(evt) {
 
 function startGame(){
     gameStart = true
-    intervalId = setInterval(move, 1000, direction)
+    speed = 2
+    intervalId = setInterval(move, (1000 / speed) ,direction)
 }
 function move(){
   boardEl.children[snake].classList.remove('snake')
@@ -162,9 +163,6 @@ function move(){
 
   function hitSnake() {
     badSnake = snakeHead.slice(1, -1)
-    console.log(badSnake)
-    console.log(snake)
-    console.log(snakeHead)
     if(badSnake.includes(snake) && badSnake.length > 2){
       gameOver()
     }
