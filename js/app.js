@@ -43,6 +43,7 @@ function init() {
   createApple()
   clearInterval(intervalId)
 }
+
 function getBoard () {
   for (let i =0; i < 100; i ++){
     let pixel = document.createElement('div')
@@ -54,6 +55,7 @@ function getBoard () {
 function createSnake() {
   boardEl.children[0].classList.add('snake')
 }
+
 function createApple() {
   while(snakeHead.includes(apple)){
     apple = Math.floor(Math.random() * 100)
@@ -68,17 +70,19 @@ function updateSnake() {
     snakeHead.push(snake)
     snakeTail.push(snake)
     createApple()
-
+    score +=1
   }
   snakeHead.forEach(function(spot){
     boardEl.children[spot].classList.add('snake')
   })
 }
+
 function removeTail() {
   snakeTail.forEach(function(spot){
     boardEl.children[spot].classList.remove('snake')
   })
 }
+
 function gameOver() {
   boardEl.style.visibility = 'hidden'
   snakeHead =[]
@@ -86,6 +90,7 @@ function gameOver() {
   clearInterval(intervalId)
   // imgEl.setAttribute("hidden", false)
 }
+
 function keyPress(evt) { 
   if (gameStart === false){
     return
@@ -122,10 +127,11 @@ function keyPress(evt) {
 
 
 function startGame(){
-    gameStart = true
-    speed = 2
-    intervalId = setInterval(move, (1000 / speed) ,direction)
+  gameStart = true
+  speed = 2
+  intervalId = setInterval(move, (1000 / speed) ,direction)
 }
+
 function move(){
   boardEl.children[snake].classList.remove('snake')
     if(direction === 'down'){
@@ -159,12 +165,13 @@ function move(){
       } 
   removeTail()
   updateSnake()  
-  }
+  scoreEl.textContent = (`Score:${score}`)
+}
 
-  function hitSnake() {
-    badSnake = snakeHead.slice(1, -1)
-    if(badSnake.includes(snake) && badSnake.length > 2){
-      gameOver()
-    }
+function hitSnake() {
+  badSnake = snakeHead.slice(1, -1)
+  if(badSnake.includes(snake) && badSnake.length > 2){
+    gameOver()
   }
+}
 
