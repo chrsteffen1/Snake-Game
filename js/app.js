@@ -55,7 +55,7 @@ function getBoard () {
 }
 
 function createSnake() {
-  boardEl.children[0].classList.add('snake')
+  boardEl.children[snake].classList.add('snake-head')
 }
 
 function createApple() {
@@ -76,12 +76,14 @@ function updateSnake() {
   }
   snakeHead.forEach(function(spot){
     boardEl.children[spot].classList.add('snake')
+    boardEl.children[snakeHead[0]].classList.replace('snake','snake-head')
   })
 }
 
 function removeTail() {
   snakeTail.forEach(function(spot){
     boardEl.children[spot].classList.remove('snake')
+    boardEl.children[spot].classList.remove('snake-head')
   })
 }
 
@@ -138,7 +140,7 @@ function startGame(){
 }
 
 function move(){
-  boardEl.children[snake].classList.remove('snake')
+  boardEl.children[snake].classList.remove('snake-head')
     if(direction === 'down'){
       snake +=10
       snakeHead.unshift((snake))

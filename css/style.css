@@ -27,8 +27,12 @@ border: 1px solid black;
   border-radius: 50%;
 }
 
+.snake-head{
+  background-color: aliceblue;
+}
 .snake{
   background-color: #2F4858;
+  border: 1px solid black;
 }
 
 #high-score{
