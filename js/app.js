@@ -127,7 +127,6 @@ function keyPress(evt) {
     }
   }
   move(direction)
-  hitSnake()
 }
 
 
@@ -171,6 +170,7 @@ function move(){
         }
       } 
   removeTail()
+  hitSnake()
   updateSnake()  
   scoreEl.textContent = (`Score:${score}`)
 }
