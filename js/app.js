@@ -38,6 +38,8 @@ function init() {
   gameStart = false
   boardEl.innerHTML = ''
   boardEl.style.visibility = 'visible'
+  resetBtn.setAttribute("hidden" , true)
+  startBtn.removeAttribute('hidden')
   getBoard()
   createSnake()
   createApple()
@@ -92,7 +94,7 @@ function gameOver() {
     highScore = score
   }
   highScoreEl.textContent = (`HighScore:${highScore}`)
-  // imgEl.setAttribute("hidden", false)
+  resetBtn.removeAttribute('hidden')
 }
 
 function keyPress(evt) { 
@@ -134,6 +136,7 @@ function startGame(){
   gameStart = true
   speed = 2
   intervalId = setInterval(move, (1000 / speed) ,direction)
+  startBtn.setAttribute("hidden", true)
 }
 
 function move(){
