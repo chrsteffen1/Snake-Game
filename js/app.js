@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake
+let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -19,8 +19,9 @@ const resetBtn = document.querySelector('#reset')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-keyBoard.addEventListener('keydown', keyPress)
+keyBoard.addEventListener('keyup', keyPress)
 resetBtn.addEventListener('click', init)
+startBtn.addEventListener('click', startGame)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -37,10 +38,10 @@ function init() {
   snakeTail =[]
   boardEl.innerHTML = ''
   boardEl.style.visibility = 'visible'
+  gameStart = false
   getBoard()
   createSnake()
   createApple()
-  // startGame()
 }
 function getBoard () {
   for (let i =0; i < 100; i ++){
@@ -81,6 +82,7 @@ function removeTail() {
 function gameOver() {
   boardEl.style.visibility = 'hidden'
   snakeHead =[]
+  gameStart = false
   clearInterval(intervalId)
   // imgEl.setAttribute("hidden", false)
 }
@@ -101,7 +103,10 @@ function keyPress(evt) {
 
 
 function startGame(){
-  intervalId = setInterval(move, 1000, direction)
+  gameStart = true
+  if (gameStart === true){
+    intervalId = setInterval(move, 1000, direction)
+  }
 }
 function move(){
   boardEl.children[snake].classList.remove('snake')
