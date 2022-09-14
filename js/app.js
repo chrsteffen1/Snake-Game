@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart, speed
+let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart, speed, pixel, winMessage
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -12,7 +12,7 @@ const highScoreEl = document.querySelector('#high-score')
 const startBtn = document.querySelector('button')
 const keyBoard = document.querySelector('body')
 const resetBtn = document.querySelector('#reset')
-// const imgEl = document.querySelector('#pic')
+const winMessageEl = document.querySelector('#winner')
 
 
 
@@ -37,7 +37,7 @@ function init() {
   snakeTail =[]
   gameStart = false
   boardEl.innerHTML = ''
-  boardEl.style.visibility = 'visible'
+  boardEl.style.backgroundColor = ''
   resetBtn.setAttribute("hidden" , true)
   startBtn.removeAttribute('hidden')
   getBoard()
@@ -45,10 +45,16 @@ function init() {
   createApple()
   clearInterval(intervalId)
 }
+function startGame(){
+  gameStart = true
+  speed = 2
+  intervalId = setInterval(move, (1000 / speed) ,direction)
+  startBtn.setAttribute("hidden", true)
+}
 
 function getBoard () {
   for (let i =0; i < 100; i ++){
-    let pixel = document.createElement('div')
+    pixel = document.createElement('div')
     pixel.classList.add('board-square' + i)
     boardEl.appendChild(pixel)
   }
@@ -63,40 +69,6 @@ function createApple() {
     apple = Math.floor(Math.random() * 100)
   }
   boardEl.children[apple].classList.add('apple')
-}
-
-function updateSnake() {
-  snakeTail = snakeHead.slice(-1)
-  if (snake === apple){
-    boardEl.children[snake].classList.remove('apple')
-    snakeHead.push(snake)
-    snakeTail.push(snake)
-    createApple()
-    score +=1
-  }
-  snakeHead.forEach(function(spot){
-    boardEl.children[spot].classList.add('snake')
-    boardEl.children[snakeHead[0]].classList.replace('snake','snake-head')
-  })
-}
-
-function removeTail() {
-  snakeTail.forEach(function(spot){
-    boardEl.children[spot].classList.remove('snake')
-    boardEl.children[spot].classList.remove('snake-head')
-  })
-}
-
-function gameOver() {
-  boardEl.style.visibility = 'hidden'
-  snakeHead =[]
-  gameStart = false
-  clearInterval(intervalId)
-  if (score > highScore) {
-    highScore = score
-  }
-  highScoreEl.textContent = (`HighScore:${highScore}`)
-  resetBtn.removeAttribute('hidden')
 }
 
 function keyPress(evt) { 
@@ -130,46 +102,61 @@ function keyPress(evt) {
   }
 }
 
+function removeTail() {
+  snakeTail.forEach(function(spot){
+    boardEl.children[spot].classList.remove('snake')
+    boardEl.children[spot].classList.remove('snake-head')
+  })
+}
 
-
-function startGame(){
-  gameStart = true
-  speed = 2
-  intervalId = setInterval(move, (1000 / speed) ,direction)
-  startBtn.setAttribute("hidden", true)
+function updateSnake() {
+  snakeTail = snakeHead.slice(-1)
+  if (snake === apple){
+    boardEl.children[snake].classList.remove('apple')
+    snakeHead.push(snake)
+    snakeTail.push(snake)
+    createApple()
+    score +=1
+  } if (score === 99){
+    winner()
+  }
+  snakeHead.forEach(function(spot){
+    boardEl.children[spot].classList.add('snake')
+    boardEl.children[snakeHead[0]].classList.replace('snake','snake-head')
+  })
 }
 
 function move(){
   boardEl.children[snake].classList.remove('snake-head')
-    if(direction === 'down'){
-      snake +=10
-      snakeHead.unshift((snake))
-      snakeHead.pop()
-      if (snake >= 100){
-        gameOver()
-      }
-    } else if (direction === 'right'){
-        snake += 1
-        snakeHead.unshift((snake)) 
-        snakeHead.pop()
-        if ((snake % 10) === 0){
-        gameOver()
-        }
-      }else if (direction === 'up'){
-        snake -= 10
-        snakeHead.unshift((snake)) 
-        snakeHead.pop()
-        if (snake < 0){
-        gameOver()
-        }
-      } else if( direction === 'left'){
-        snake -= 1
-        snakeHead.unshift(snake) 
-        snakeHead.pop()
-        if (((snake + 1)% 10) === 0){
-        gameOver()
-        }
-      } 
+  if(direction === 'down'){
+    snake +=10
+    snakeHead.unshift((snake))
+    snakeHead.pop()
+    if (snake >= 100){
+      gameOver()
+    }
+  } else if (direction === 'right'){
+    snake += 1
+    snakeHead.unshift((snake)) 
+    snakeHead.pop()
+    if ((snake % 10) === 0){
+      gameOver()
+    }
+  }else if (direction === 'up'){
+    snake -= 10
+    snakeHead.unshift((snake)) 
+    snakeHead.pop()
+    if (snake < 0){
+      gameOver()
+    }
+  } else if( direction === 'left'){
+    snake -= 1
+    snakeHead.unshift(snake) 
+    snakeHead.pop()
+    if (((snake + 1)% 10) === 0){
+      gameOver()
+    }
+  } 
   removeTail()
   updateSnake()  
   hitSnake()
@@ -187,3 +174,18 @@ function hitSnake() {
   }
 }
 
+function gameOver() {
+  // boardEl.style.backgroundColor = 'green'
+  clearInterval(intervalId)
+  snakeHead =[]
+  if (score > highScore) {
+    highScore = score
+  }
+  highScoreEl.textContent = (`HighScore:${highScore}`)
+  resetBtn.removeAttribute('hidden')
+}
+function winner(){
+  clearInterval(intervalId)
+  boardEl.innerHTML = ''
+  winMessageEl.textContent = 'WOW Great Job'
+}
