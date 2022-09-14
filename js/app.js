@@ -12,7 +12,12 @@ const highScoreEl = document.querySelector('#high-score')
 const startBtn = document.querySelector('button')
 const keyBoard = document.querySelector('body')
 const resetBtn = document.querySelector('#reset')
-const gaemOverMessageEl = document.querySelector('#game-over')
+const gameOverMessageEl = document.querySelector('#game-over')
+const easyBtn = document.querySelector('#easy')
+const normalBtn = document.querySelector('#normal')
+const hardBtn = document.querySelector('#hard')
+const ludicrousBtn = document.querySelector('#ludicrous')
+
 
 
 
@@ -22,6 +27,10 @@ const gaemOverMessageEl = document.querySelector('#game-over')
 keyBoard.addEventListener('keydown', keyPress)
 resetBtn.addEventListener('click', init)
 startBtn.addEventListener('click', startGame)
+easyBtn.addEventListener('click', easyMode)
+normalBtn.addEventListener('click', normalMode)
+hardBtn.addEventListener('click', hardMode)
+ludicrousBtn.addEventListener('click', ludicrousMode)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -38,9 +47,10 @@ function init() {
   gameStart = false
   boardEl.innerHTML = ''
   boardEl.style.display ='grid '
-  gaemOverMessageEl.textContent = ''
+  gameOverMessageEl.textContent = ''
   resetBtn.setAttribute("hidden" , true)
   startBtn.removeAttribute('hidden')
+  normalMode()
   getBoard()
   createSnake()
   createApple()
@@ -48,7 +58,6 @@ function init() {
 }
 function startGame(){
   gameStart = true
-  speed = 6
   intervalId = setInterval(move, (1000 / speed) ,direction)
   startBtn.setAttribute("hidden", true)
 }
@@ -59,6 +68,19 @@ function getBoard () {
     pixel.classList.add('board-square' + i)
     boardEl.appendChild(pixel)
   }
+}
+
+function easyMode(){
+  speed = 2
+}
+function normalMode(){
+  speed = 6
+}
+function hardMode() {
+  speed = 20
+}
+function ludicrousMode() {
+  speed = 40
 }
 
 function createSnake() {
@@ -177,7 +199,7 @@ function hitSnake() {
 
 function gameOver() {
   boardEl.style.display = 'none'
-  gaemOverMessageEl.textContent = `Game Over! Your Score: ${score}`
+  gameOverMessageEl.textContent = `Game Over! Your Score: ${score}`
   clearInterval(intervalId)
   snakeHead =[]
   snakeTail = []
@@ -190,5 +212,5 @@ function gameOver() {
 function winner(){
   clearInterval(intervalId)
 boardEl.style.display= 'none'
-  gaemOverMessageEl.textContent = 'WOW Great Job'
+  gameOverMessageEl.textContent = 'WOW Great Job'
 }

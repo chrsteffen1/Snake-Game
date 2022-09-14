@@ -41,7 +41,6 @@ color: white;
 
 .snake-head{
   background-color: aliceblue;
-  /* border: 1px solid black; */
 }
 .snake{
   background-color: white;
@@ -51,7 +50,6 @@ color: white;
   color: white;
   text-shadow: 0 0 20px white;
   display: inline;
-  /* justify-content: space-between; */
 }
 
 div {
