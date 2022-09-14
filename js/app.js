@@ -157,14 +157,14 @@ function move(){
       gameOver()
     }
   } 
+  hitSnake()
   removeTail()
   updateSnake()  
-  hitSnake()
   scoreEl.textContent = (`Score:${score}`)
 }
 
 function hitSnake() {
-  badSnake = snakeHead.slice(1, -1)
+  badSnake = snakeHead.slice(1)
   if(badSnake.length > 1){
     badSnake.forEach((spot) => {
       if(spot === snake) {

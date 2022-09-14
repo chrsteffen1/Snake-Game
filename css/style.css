@@ -33,13 +33,14 @@ box-shadow: 0 0 20px white;
 .apple {
   background-color: red;
   border-radius: 50%;
+  box-shadow: 0 0 20px red;
 }
 
 .snake-head{
   background-color: aliceblue;
 }
 .snake{
-  background-color: #CEF6FF;
+  background-color: #00bae3;
   border: 1px solid black;
 }
 /* span {
