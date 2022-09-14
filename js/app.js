@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart, speed, pixel, winMessage
+let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection
 
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -80,27 +80,27 @@ function keyPress(evt) {
     if(direction === 'up' || direction === 'down'){
       return
     } else {
-      direction = 'down'
+      newDirection = 'down'
     }
   } else if (evt.code === 'ArrowRight'){
     if(direction === 'right' || direction === 'left'){
       return
     } else {
-      direction = 'right'
+      newDirection = 'right'
     }
   } else if (evt.code === 'ArrowUp'){
     if(direction === 'up' || direction === 'down'){
       return
     } else {
-      direction = 'up'
+      newDirection = 'up'
     }
   } else if (evt.code === 'ArrowLeft'){
     if(direction === 'right' || direction === 'left'){
       return
     } else {
-      direction = 'left'
+      newDirection = 'left'
     }
-  }
+  } setTimeout(() => { direction = newDirection}, (990/speed))
 }
 
 function removeTail() {
