@@ -3,8 +3,8 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection
-
+let board, snake, apple, direction, score, snakeHead, snakeTail, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection
+let highScore = 0
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
 const scoreEl = document.querySelector('#score')

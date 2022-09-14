@@ -41,10 +41,12 @@ color: white;
 
 .snake-head{
   background-color: aliceblue;
+  box-shadow: 0 0 20px aliceblue;
 }
 .snake{
   background-color: white;
   border: 1px solid black;
+  box-shadow: 0 0 20px white;
 }
 /* #score, #high-score {
   color: white;
