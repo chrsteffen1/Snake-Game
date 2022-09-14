@@ -37,7 +37,8 @@ function init() {
   snakeTail =[]
   gameStart = false
   boardEl.innerHTML = ''
-  boardEl.style.backgroundColor = ''
+  boardEl.style.display ='grid '
+  winMessageEl.textContent = ''
   resetBtn.setAttribute("hidden" , true)
   startBtn.removeAttribute('hidden')
   getBoard()
@@ -175,9 +176,11 @@ function hitSnake() {
 }
 
 function gameOver() {
-  // boardEl.style.backgroundColor = 'green'
+  boardEl.style.display = 'none'
+  winMessageEl.textContent = `Game Over! Your Score: ${score}`
   clearInterval(intervalId)
   snakeHead =[]
+  snakeTail = []
   if (score > highScore) {
     highScore = score
   }
@@ -186,6 +189,6 @@ function gameOver() {
 }
 function winner(){
   clearInterval(intervalId)
-  boardEl.innerHTML = ''
+boardEl.style.display= 'none'
   winMessageEl.textContent = 'WOW Great Job'
 }
