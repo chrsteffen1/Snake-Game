@@ -18,8 +18,8 @@ h1{
 
 #board {
 display: grid;
-grid-template-rows: repeat(10, 8vmin);
-grid-template-columns: repeat(10, 8vmin);
+grid-template-rows: repeat(30, 2vmin);
+grid-template-columns: repeat(30, 2vmin);
 grid-gap: 0vmin;
 margin: 10px 0;
 width: fit-content;

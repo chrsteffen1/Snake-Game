@@ -48,13 +48,13 @@ function init() {
 }
 function startGame(){
   gameStart = true
-  speed = 2
+  speed = 6
   intervalId = setInterval(move, (1000 / speed) ,direction)
   startBtn.setAttribute("hidden", true)
 }
 
 function getBoard () {
-  for (let i =0; i < 100; i ++){
+  for (let i =0; i < 900; i ++){
     pixel = document.createElement('div')
     pixel.classList.add('board-square' + i)
     boardEl.appendChild(pixel)
@@ -67,7 +67,7 @@ function createSnake() {
 
 function createApple() {
   while(snakeHead.includes(apple)){
-    apple = Math.floor(Math.random() * 100)
+    apple = Math.floor(Math.random() * 900)
   }
   boardEl.children[apple].classList.add('apple')
 }
@@ -130,21 +130,21 @@ function updateSnake() {
 function move(){
   boardEl.children[snake].classList.remove('snake-head')
   if(direction === 'down'){
-    snake +=10
+    snake +=30
     snakeHead.unshift((snake))
     snakeHead.pop()
-    if (snake >= 100){
+    if (snake >= 900){
       gameOver()
     }
   } else if (direction === 'right'){
     snake += 1
     snakeHead.unshift((snake)) 
     snakeHead.pop()
-    if ((snake % 10) === 0){
+    if ((snake % 30) === 0){
       gameOver()
     }
   }else if (direction === 'up'){
-    snake -= 10
+    snake -= 30
     snakeHead.unshift((snake)) 
     snakeHead.pop()
     if (snake < 0){
@@ -154,7 +154,7 @@ function move(){
     snake -= 1
     snakeHead.unshift(snake) 
     snakeHead.pop()
-    if (((snake + 1)% 10) === 0){
+    if (((snake + 1)% 30) === 0){
       gameOver()
     }
   } 
