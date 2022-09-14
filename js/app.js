@@ -12,7 +12,7 @@ const highScoreEl = document.querySelector('#high-score')
 const startBtn = document.querySelector('button')
 const keyBoard = document.querySelector('body')
 const resetBtn = document.querySelector('#reset')
-const winMessageEl = document.querySelector('#winner')
+const gaemOverMessageEl = document.querySelector('#game-over')
 
 
 
@@ -38,7 +38,7 @@ function init() {
   gameStart = false
   boardEl.innerHTML = ''
   boardEl.style.display ='grid '
-  winMessageEl.textContent = ''
+  gaemOverMessageEl.textContent = ''
   resetBtn.setAttribute("hidden" , true)
   startBtn.removeAttribute('hidden')
   getBoard()
@@ -177,7 +177,7 @@ function hitSnake() {
 
 function gameOver() {
   boardEl.style.display = 'none'
-  winMessageEl.textContent = `Game Over! Your Score: ${score}`
+  gaemOverMessageEl.textContent = `Game Over! Your Score: ${score}`
   clearInterval(intervalId)
   snakeHead =[]
   snakeTail = []
@@ -190,5 +190,5 @@ function gameOver() {
 function winner(){
   clearInterval(intervalId)
 boardEl.style.display= 'none'
-  winMessageEl.textContent = 'WOW Great Job'
+  gaemOverMessageEl.textContent = 'WOW Great Job'
 }
