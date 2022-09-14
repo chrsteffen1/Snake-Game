@@ -46,19 +46,23 @@ color: white;
   background-color: white;
   border: 1px solid black;
 }
-#score, #high-score {
+/* #score, #high-score {
   color: white;
   text-shadow: 0 0 20px white;
   display: inline;
-}
+} */
 
 div {
   width: auto;
 }
-#scores > p {
-  display: flex;
+
+.scores > p {
+  display: inline;
   justify-content: space-between;
   align-items: center;
+  color: white;
+  text-shadow: 0 0 20px white;
+  margin: 0 10px;;
 }
 
 #game-over {

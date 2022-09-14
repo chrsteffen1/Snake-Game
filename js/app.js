@@ -9,6 +9,7 @@ let board, snake, apple, direction, score, snakeHead, snakeTail, highScore, inte
 const boardEl = document.querySelector('#board')
 const scoreEl = document.querySelector('#score')
 const highScoreEl = document.querySelector('#high-score')
+const speedEl = document.querySelector('#speed')
 const startBtn = document.querySelector('button')
 const keyBoard = document.querySelector('body')
 const resetBtn = document.querySelector('#reset')
@@ -40,7 +41,6 @@ function init() {
   snake = 0
   apple = 0
   direction = 'right'
-  highScore = 0
   scoreEl.textContent = (`Score:${score}`)
   snakeHead = [snake]
   snakeTail =[]
@@ -50,6 +50,10 @@ function init() {
   gameOverMessageEl.textContent = ''
   resetBtn.setAttribute("hidden" , true)
   startBtn.removeAttribute('hidden')
+  easyBtn.removeAttribute("hidden")
+  normalBtn.removeAttribute("hidden")
+  hardBtn.removeAttribute("hidden")
+  ludicrousBtn.removeAttribute("hidden")
   normalMode()
   getBoard()
   createSnake()
@@ -72,15 +76,19 @@ function getBoard () {
 
 function easyMode(){
   speed = 2
+  speedEl.textContent = 'Easy'
 }
 function normalMode(){
   speed = 6
+  speedEl.textContent = 'Normal'
 }
 function hardMode() {
   speed = 20
+  speedEl.textContent = 'Hard'
 }
 function ludicrousMode() {
   speed = 40
+  speedEl.textContent = 'Ludicrous'
 }
 
 function createSnake() {
@@ -122,7 +130,7 @@ function keyPress(evt) {
     } else {
       newDirection = 'left'
     }
-  } setTimeout(() => { direction = newDirection}, (990/speed))
+  } setTimeout(() => { direction = newDirection}, (999/speed))
 }
 
 function removeTail() {
@@ -140,7 +148,7 @@ function updateSnake() {
     snakeTail.push(snake)
     createApple()
     score +=1
-  } if (score === 99){
+  } if (score === 899){
     winner()
   }
   snakeHead.forEach(function(spot){
@@ -208,9 +216,17 @@ function gameOver() {
   }
   highScoreEl.textContent = (`HighScore:${highScore}`)
   resetBtn.removeAttribute('hidden')
+  easyBtn.setAttribute("hidden" , true)
+  normalBtn.setAttribute("hidden" , true)
+  hardBtn.setAttribute("hidden" , true)
+  ludicrousBtn.setAttribute("hidden" , true)
 }
 function winner(){
   clearInterval(intervalId)
-boardEl.style.display= 'none'
+  boardEl.style.display= 'none'
   gameOverMessageEl.textContent = 'WOW Great Job'
+  easyBtn.setAttribute("hidden" , true)
+  normalBtn.setAttribute("hidden" , true)
+  hardBtn.setAttribute("hidden" , true)
+  ludicrousBtn.setAttribute("hidden" , true)
 }
