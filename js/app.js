@@ -3,7 +3,7 @@
 
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection
+let board, snake, apple, direction, score, snakeHead, snakeTail, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection, difficulty  
 let highScore = 0
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -35,6 +35,7 @@ ludicrousBtn.addEventListener('click', ludicrousMode)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
+normalMode()
 
 function init() {
   score = 0
@@ -54,7 +55,7 @@ function init() {
   normalBtn.removeAttribute("hidden")
   hardBtn.removeAttribute("hidden")
   ludicrousBtn.removeAttribute("hidden")
-  normalMode()
+  speedEl.textContent = `${difficulty}`
   getBoard()
   createSnake()
   createApple()
@@ -76,19 +77,23 @@ function getBoard () {
 
 function easyMode(){
   speed = 2
-  speedEl.textContent = 'Easy'
+  difficulty = 'Easy'
+  init()
 }
 function normalMode(){
   speed = 6
-  speedEl.textContent = 'Normal'
+  difficulty = 'Normal'
+  init()
 }
 function hardMode() {
   speed = 20
-  speedEl.textContent = 'Hard'
+  difficulty = 'Hard'
+  init()
 }
 function ludicrousMode() {
   speed = 40
-  speedEl.textContent = 'Ludicrous'
+  difficulty = 'Ludicrous'
+  init()
 }
 
 function createSnake() {
