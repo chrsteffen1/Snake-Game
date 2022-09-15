@@ -77,3 +77,8 @@ div {
   margin-bottom: 10px;
   margin-top: 0%;
 }
+
+.btns > :nth-child(2n){
+  margin-top: 20px ; 
+  display: flex;
+}
