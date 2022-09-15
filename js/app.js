@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 
-
+const audioElement = new Audio(`../assests/Retro-music.mp3`)
 
 /*----------------------------- Variables (state) ---------------------------*/
 let board, snake, apple, direction, score, snakeHead, snakeTail, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection, difficulty  
@@ -10,7 +10,7 @@ const boardEl = document.querySelector('#board')
 const scoreEl = document.querySelector('#score')
 const highScoreEl = document.querySelector('#high-score')
 const speedEl = document.querySelector('#speed')
-const startBtn = document.querySelector('button')
+const startBtn = document.querySelector('#start-game')
 const keyBoard = document.querySelector('body')
 const resetBtn = document.querySelector('#reset')
 const gameOverMessageEl = document.querySelector('#game-over')
@@ -22,6 +22,7 @@ const upBtn = document.querySelector('#up')
 const downBtn = document.querySelector('#down')
 const leftBtn = document.querySelector('#left')
 const rightBtn = document.querySelector('#right')
+const musicBtn = document.querySelector('#music-button')
 /*----------------------------- Event Listeners -----------------------------*/
 
 keyBoard.addEventListener('keydown', keyPress)
@@ -35,6 +36,7 @@ upBtn.addEventListener('click', keyPress)
 downBtn.addEventListener('click', keyPress)
 leftBtn.addEventListener('click', keyPress)
 rightBtn.addEventListener('click', keyPress)
+musicBtn.addEventListener('click', playMusic)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -173,7 +175,6 @@ function updateSnake() {
 }
 
 function move(){
-  console.log(direction);
   boardEl.children[snake].classList.remove('snake-head')
   if(direction === 'down'){
     snake +=30
@@ -250,4 +251,9 @@ function winner(){
   normalBtn.setAttribute("hidden" , true)
   hardBtn.setAttribute("hidden" , true)
   ludicrousBtn.setAttribute("hidden" , true)
+}
+
+function playMusic(){
+  audioElement.play()
+  audioElement.volume = .10
 }

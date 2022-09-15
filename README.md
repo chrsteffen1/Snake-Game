@@ -11,10 +11,10 @@
 
 ## Motivation:
 
-### - I have always loved video games and one of the first games I can remeber playing was snake on my dad's old Nokia cell phone. I loved the simple nature of the game and trying to beat my highscore. Even now with all the advancements in graphics I still love the 8-bit style.
+### - I have always loved video games and one of the first games I can remember playing was snake on my dad's old Nokia cell phone. I loved the simple nature of the game and trying to beat my high score. Even now with all the advancements in graphics I still love the 8-bit style.
 
 ---
-## Inital Ideas:
+## Initial Ideas:
 ![Wireframe](assests/snake-game-wireframe.png)
 
 ## Pseudocode:
@@ -33,7 +33,7 @@
 6. Create arrow key functions
    - Loop until new input (either new direction or hit the edge of the board)
    - Set speed of looping?
-7. Create “food” at random spot   
+7. Create “food” at a random spot   
    - function Math.floor(Math.random() * board size)
 8. Create addToSnake function
    - Snake size plus 1
@@ -45,7 +45,7 @@
     - Best = 0
     - If score is > best  best = score
 12. Add CSS
-    - Create an dark mode if there is time
+    - Create a dark mode if there is time
 
 ---
 
@@ -62,10 +62,6 @@
 - Html
 - Git
 - Bootstrap
-
----
-
-## User Experience:
 
 ---
 
