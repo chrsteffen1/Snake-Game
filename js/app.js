@@ -41,12 +41,12 @@ musicBtn.addEventListener('click', playMusic)
 /*-------------------------------- Functions --------------------------------*/
 init()
 normalMode()
+isPlaying = false
 
 function init() {
   score = 0
   snake = 0
   apple = 0
-  isPlaying = false
   direction = 'right'
   scoreEl.textContent = (`Score: ${score}`)
   snakeHead = [snake]
@@ -261,6 +261,7 @@ function playMusic(){
   } else {
     audioElement.play()
     isPlaying = true
+    audioElement.loop = true
   }
   audioElement.volume = .10
 }
