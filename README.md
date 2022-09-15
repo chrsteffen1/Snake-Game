@@ -82,4 +82,4 @@
 - ~~Change my difficulty setting~~ 
 - Choose the size of your board
 - Add a light/dark mode
-- Add background music
+- ~~Add background music~~
