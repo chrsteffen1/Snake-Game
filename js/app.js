@@ -18,7 +18,10 @@ const easyBtn = document.querySelector('#easy')
 const normalBtn = document.querySelector('#normal')
 const hardBtn = document.querySelector('#hard')
 const ludicrousBtn = document.querySelector('#ludicrous')
-
+const upBtn = document.querySelector('#up')
+const downBtn = document.querySelector('#down')
+const leftBtn = document.querySelector('#left')
+const rightBtn = document.querySelector('#right')
 /*----------------------------- Event Listeners -----------------------------*/
 
 keyBoard.addEventListener('keydown', keyPress)
@@ -28,6 +31,10 @@ easyBtn.addEventListener('click', easyMode)
 normalBtn.addEventListener('click', normalMode)
 hardBtn.addEventListener('click', hardMode)
 ludicrousBtn.addEventListener('click', ludicrousMode)
+upBtn.addEventListener('click', keyPress)
+downBtn.addEventListener('click', keyPress)
+leftBtn.addEventListener('click', keyPress)
+rightBtn.addEventListener('click', keyPress)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -51,6 +58,10 @@ function init() {
   normalBtn.removeAttribute("hidden")
   hardBtn.removeAttribute("hidden")
   ludicrousBtn.removeAttribute("hidden")
+  upBtn.removeAttribute("hidden")
+  downBtn.removeAttribute("hidden")
+  rightBtn.removeAttribute("hidden")
+  leftBtn.removeAttribute("hidden")
   speedEl.textContent = `${difficulty}`
   getBoard()
   createSnake()
@@ -107,25 +118,25 @@ function keyPress(evt) {
   if (gameStart === false){
     return
   }
-  if (evt.code === 'ArrowDown'){
+  if (evt.code === 'ArrowDown' || evt.target.id === 'down'){
     if(direction === 'up' || direction === 'down'){
       return
     } else {
       newDirection = 'down'
     }
-  } else if (evt.code === 'ArrowRight'){
+  } else if (evt.code === 'ArrowRight' || evt.target.id === 'right'){
     if(direction === 'right' || direction === 'left'){
       return
     } else {
       newDirection = 'right'
     }
-  } else if (evt.code === 'ArrowUp'){
+  } else if (evt.code === 'ArrowUp' || evt.target.id === 'up'){
     if(direction === 'up' || direction === 'down'){
       return
     } else {
       newDirection = 'up'
     }
-  } else if (evt.code === 'ArrowLeft'){
+  } else if (evt.code === 'ArrowLeft' || evt.target.id === 'left'){
     if(direction === 'right' || direction === 'left'){
       return
     } else {
@@ -225,6 +236,10 @@ function gameOver() {
   normalBtn.setAttribute("hidden" , true)
   hardBtn.setAttribute("hidden" , true)
   ludicrousBtn.setAttribute("hidden" , true)
+  upBtn.setAttribute("hidden" , true)
+  downBtn.setAttribute("hidden" , true)
+  rightBtn.setAttribute("hidden" , true)
+  leftBtn.setAttribute("hidden" , true)
   gameStart = false
 }
 function winner(){
