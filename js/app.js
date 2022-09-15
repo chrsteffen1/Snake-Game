@@ -3,7 +3,7 @@
 const audioElement = new Audio(`../assests/Retro-music.mp3`)
 
 /*----------------------------- Variables (state) ---------------------------*/
-let board, snake, apple, direction, score, snakeHead, snakeTail, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection, difficulty  
+let board, snake, apple, direction, score, snakeHead, snakeTail, intervalId, badSnake, gameStart, speed, pixel, winMessage, newDirection, difficulty, isPlaying  
 let highScore = 0
 /*------------------------ Cached Element References ------------------------*/
 const boardEl = document.querySelector('#board')
@@ -46,6 +46,7 @@ function init() {
   score = 0
   snake = 0
   apple = 0
+  isPlaying = false
   direction = 'right'
   scoreEl.textContent = (`Score: ${score}`)
   snakeHead = [snake]
@@ -254,6 +255,12 @@ function winner(){
 }
 
 function playMusic(){
-  audioElement.play()
+  if (isPlaying === true) {
+    audioElement.pause()
+    isPlaying = false
+  } else {
+    audioElement.play()
+    isPlaying = true
+  }
   audioElement.volume = .10
 }
