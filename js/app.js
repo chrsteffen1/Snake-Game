@@ -19,10 +19,6 @@ const normalBtn = document.querySelector('#normal')
 const hardBtn = document.querySelector('#hard')
 const ludicrousBtn = document.querySelector('#ludicrous')
 
-
-
-
-
 /*----------------------------- Event Listeners -----------------------------*/
 
 keyBoard.addEventListener('keydown', keyPress)
@@ -42,7 +38,7 @@ function init() {
   snake = 0
   apple = 0
   direction = 'right'
-  scoreEl.textContent = (`Score:${score}`)
+  scoreEl.textContent = (`Score: ${score}`)
   snakeHead = [snake]
   snakeTail =[]
   gameStart = false
@@ -76,7 +72,7 @@ function getBoard () {
 }
 
 function easyMode(){
-  speed = 2
+  speed = 4
   difficulty = 'Easy'
   init()
 }
@@ -135,7 +131,10 @@ function keyPress(evt) {
     } else {
       newDirection = 'left'
     }
-  } setTimeout(() => { direction = newDirection}, (999/speed))
+  } else {
+    return
+  }
+  setTimeout(() => { direction = newDirection}, (999/speed))
 }
 
 function removeTail() {
@@ -163,6 +162,7 @@ function updateSnake() {
 }
 
 function move(){
+  console.log(direction);
   boardEl.children[snake].classList.remove('snake-head')
   if(direction === 'down'){
     snake +=30
@@ -196,7 +196,7 @@ function move(){
   hitSnake()
   removeTail()
   updateSnake()  
-  scoreEl.textContent = (`Score:${score}`)
+  scoreEl.textContent = (`Score: ${score}`)
 }
 
 function hitSnake() {
@@ -219,12 +219,13 @@ function gameOver() {
   if (score > highScore) {
     highScore = score
   }
-  highScoreEl.textContent = (`HighScore:${highScore}`)
+  highScoreEl.textContent = (`HighScore: ${highScore}`)
   resetBtn.removeAttribute('hidden')
   easyBtn.setAttribute("hidden" , true)
   normalBtn.setAttribute("hidden" , true)
   hardBtn.setAttribute("hidden" , true)
   ludicrousBtn.setAttribute("hidden" , true)
+  gameStart = false
 }
 function winner(){
   clearInterval(intervalId)
