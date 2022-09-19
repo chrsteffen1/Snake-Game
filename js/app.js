@@ -151,30 +151,6 @@ function keyPress(evt) {
   setTimeout(() => { direction = newDirection}, (999/speed))
 }
 
-function removeTail() {
-  snakeTail.forEach(function(spot){
-    boardEl.children[spot].classList.remove('snake')
-    boardEl.children[spot].classList.remove('snake-head')
-  })
-}
-
-function updateSnake() {
-  snakeTail = snakeHead.slice(-1)
-  if (snake === apple){
-    boardEl.children[snake].classList.remove('apple')
-    snakeHead.push(snake)
-    snakeTail.push(snake)
-    createApple()
-    score +=1
-  } if (score === 899){
-    winner()
-  }
-  snakeHead.forEach(function(spot){
-    boardEl.children[spot].classList.add('snake')
-    boardEl.children[snakeHead[0]].classList.replace('snake','snake-head')
-  })
-}
-
 function move(){
   boardEl.children[snake].classList.remove('snake-head')
   if(direction === 'down'){
@@ -211,6 +187,31 @@ function move(){
   updateSnake()  
   scoreEl.textContent = (`Score: ${score}`)
 }
+
+function removeTail() {
+  snakeTail.forEach(function(spot){
+    boardEl.children[spot].classList.remove('snake')
+    boardEl.children[spot].classList.remove('snake-head')
+  })
+}
+
+function updateSnake() {
+  snakeTail = snakeHead.slice(-1)
+  if (snake === apple){
+    boardEl.children[snake].classList.remove('apple')
+    snakeHead.push(snake)
+    snakeTail.push(snake)
+    createApple()
+    score +=1
+  } if (score === 899){
+    winner()
+  }
+  snakeHead.forEach(function(spot){
+    boardEl.children[spot].classList.add('snake')
+    boardEl.children[snakeHead[0]].classList.replace('snake','snake-head')
+  })
+}
+
 
 function hitSnake() {
   badSnake = snakeHead.slice(1)
